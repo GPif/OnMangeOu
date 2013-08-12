@@ -1,0 +1,48 @@
+
+<h1>CéOuKonMange : <%= @lunch.date %></h1>
+
+<%= form_for ([@lunch,@attendee]) do |f| %>
+  <table id="choice_t">
+    <tr>
+      <th></th>
+        <% Resto.all.each do |r| %>
+          <th><%= r.name %></th>
+        <% end %>
+    </tr>
+    <% @lunch.attendees.each do |a| %>
+      <tr>
+        <td><%= a.name %></td>
+        <% Resto.all.each do |r| %>
+          <% if a.choices.select { |x| x.resto_id==r.id}.count > 0 %>
+            <td>x</td>
+          <% else %>
+            <td></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+      <tr>
+        <td><%= f.text_field :name %></td>
+        <% Resto.all.each do |r| %>
+          <td>
+            <%= f.fields_for @attendee.choices.build do |ff| %>
+              <%= ff.check_box(:resto_id, {:multiple => true},  r.id, nil) %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <% Resto.all.each do |r| %>
+          <td>
+            <%= @lunch.choices.select { |x| x.resto_id == r.id  }.count %>
+          </td>
+        <% end %>
+      </tr>
+
+  </table>
+
+  <%= f.submit "Submit" %>
+<% end %>
+
+

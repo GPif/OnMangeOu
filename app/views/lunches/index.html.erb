@@ -1,0 +1,8 @@
+<h1>OucétiKonAmangé?</h1>
+
+<h2><%= link_to 'Nouveau sondage', new_lunch_path %></h2>
+
+<% @lunches.each do |lunch| %>
+  <%= link_to lunch.date, lunch %><br/>
+<% end %>
+
