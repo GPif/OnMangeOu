@@ -69,6 +69,6 @@ class RestosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resto_params
-      params.require(:resto).permit(:name)
+      params.require(:resto).permit(:name,:phone)
     end
 end

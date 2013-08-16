@@ -2,6 +2,7 @@
 <h2><%= link_to 'Créer Un Autre Resto', new_resto_path %></h2>
 <% @restos.each do |resto| %>
   <%= link_to resto.name, resto %>
+  <%= ' (Tel : '+resto.phone.to_s+' ) ' %>
   <%= link_to 'x', resto, method: :delete, data: { confirm: 'Are you sure?' } %>
   <br/>
 <% end %>

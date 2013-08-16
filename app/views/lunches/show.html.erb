@@ -6,7 +6,7 @@
     <tr>
       <th></th>
         <% Resto.all.each do |r| %>
-          <th><%= r.name %></th>
+          <th><%= link_to r.name, r %></th>
         <% end %>
     </tr>
     <% @lunch.attendees.each do |a| %>
